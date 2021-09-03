@@ -1,0 +1,30 @@
+{
+    "name": "bear8421/spreadsheets-basic",
+    "description": "Light, simple and standalone Google Spreadsheets Basic Connector",
+    "keywords": [
+        "google",
+        "spreadsheets",
+        "php"
+    ],
+    "homepage": "https://github.com/bear8421/spreadsheets-basic",
+    "license": "GPL-3.0",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Nguyen An Hung",
+            "email": "dev@nguyenanhung.com",
+            "homepage": "https://nguyenanhung.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "nguyenanhung\\Google\\Basic\\Spreadsheets\\": "src/"
+        }
+    }
+}

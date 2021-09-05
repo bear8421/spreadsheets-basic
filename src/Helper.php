@@ -19,6 +19,9 @@ namespace nguyenanhung\Google\Basic\Spreadsheets;
  */
 class Helper
 {
+    const EXIT_SUCCESS = 0;
+    const EXIT_ERROR   = 1;
+
     /**
      * Function sendToSpreadsheets
      *
@@ -34,7 +37,7 @@ class Helper
     {
         if (empty($url)) {
             return [
-                'code'    => 1,
+                'code'    => self::EXIT_ERROR,
                 'status'  => 'failed',
                 'message' => 'Url is Empty'
             ];
@@ -45,7 +48,7 @@ class Helper
         curl_setopt_array($curl, [
             CURLOPT_URL            => $endpoint,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING       => "",
+            CURLOPT_ENCODING       => "utf-8",
             CURLOPT_MAXREDIRS      => 10,
             CURLOPT_TIMEOUT        => 0,
             CURLOPT_FOLLOWLOCATION => true,
@@ -59,7 +62,7 @@ class Helper
 
         if ($err) {
             return [
-                'code'    => 1,
+                'code'    => self::EXIT_ERROR,
                 'status'  => 'failed',
                 'message' => $err
             ];
@@ -69,15 +72,15 @@ class Helper
 
         if (isset($res->result) && $res->result == 'success') {
             return [
-                'code'    => 0,
+                'code'    => self::EXIT_SUCCESS,
                 'status'  => 'success',
                 'message' => 'Success',
-                'rowId'   => isset($res->row) ? $res->row : ''
+                'rowId'   => isset($res->row) ? $res->row : null
             ];
         }
 
         return [
-            'code'    => 1,
+            'code'    => self::EXIT_ERROR,
             'status'  => 'failed',
             'message' => 'Error'
         ];

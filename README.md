@@ -10,7 +10,33 @@ Thư viện này chỉ nên đáp ứng những project nhỏ, làm việc với
 
 Nếu cần nhiều tính năng hơn, hãy làm việc với Google Sheet API trên Google Cloud Platform - Tham khảo tài liệu tại đây: https://developers.google.com/sheets/api
 
-## Support
+## Cài đặt thư viện
+
+Thư viện này được cài đặt thông qua Composer
+
+```shell
+composer require bear8421/spreadsheets-basic
+```
+
+```php
+<?php
+require_once __DIR__.'/vendor/autoload.php';
+use nguyenanhung\Google\Basic\Spreadsheets\GoogleSpreadsheets;
+
+$scriptId = '1234';
+$contentData = [
+'Column1_1' => 1,
+'Column1_2' => 2,
+];
+$spreadsheets = new GoogleSpreadsheets();
+$spreadsheets->setScriptId('1234')
+->setContentData($contentData)
+->push();
+
+
+```
+
+## Liên hệ & Hỗ trợ
 
 | Name        | Email                | Skype            | Facebook      |
 | ----------- | -------------------- | ---------------- | ------------- |

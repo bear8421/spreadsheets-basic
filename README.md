@@ -25,8 +25,8 @@ use nguyenanhung\Google\Basic\Spreadsheets\GoogleSpreadsheets;
 
 $scriptId = '1234';
 $contentData = [
-'Column1_1' => 1,
-'Column1_2' => 2,
+    'Column1_1' => 1,
+    'Column1_2' => 2,
 ];
 $spreadsheets = new GoogleSpreadsheets();
 $spreadsheets->setScriptId('1234')

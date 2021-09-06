@@ -22,6 +22,21 @@ class Helper
     const EXIT_SUCCESS = 0;
     const EXIT_ERROR   = 1;
 
+    const REQUEST_TIMEOUT = 30;
+    const PORT_SSL        = 443;
+    const PORT_HTTP       = 80;
+
+    const RESPONSE_SUCCESS = [
+        'code'    => self::EXIT_SUCCESS,
+        'status'  => 'success',
+        'message' => 'Success',
+    ];
+    const RESPONSE_FAILED  = [
+        'code'    => self::EXIT_ERROR,
+        'status'  => 'failed',
+        'message' => 'Error'
+    ];
+
     /**
      * Function sendToSpreadsheets
      *
@@ -84,5 +99,42 @@ class Helper
             'status'  => 'failed',
             'message' => 'Error'
         ];
+    }
+
+    /**
+     * Hàm gọi 1 async GET Request để không delay Main Process
+     *
+     * @param string $url Url Endpoint
+     *
+     * @return array TRUE nếu thành công, FALSE nếu thất bại
+     *
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 10/16/18 17:15
+     */
+    public static function backgroundHttpGet($url)
+    {
+        $parts = parse_url($url);
+        if (strtolower($parts['scheme']) == 'https') {
+            $fp = fsockopen('ssl://' . $parts['host'], isset($parts['port']) ? $parts['port'] : self::PORT_SSL, $errno, $errStr, self::REQUEST_TIMEOUT);
+        } else {
+            $fp = fsockopen($parts['host'], isset($parts['port']) ? $parts['port'] : self::PORT_HTTP, $errno, $errStr, self::REQUEST_TIMEOUT);
+        }
+        if (!$fp) {
+            if (function_exists('log_message')) {
+                log_message('error', "ERROR: " . json_encode($errno) . " - " . json_encode($errStr));
+            }
+
+            return self::RESPONSE_FAILED;
+        } else {
+            $out = "GET " . $parts['path'] . "?" . $parts['query'] . " HTTP/1.1\r\n";
+            $out .= "Host: " . $parts['host'] . "\r\n";
+            $out .= "Content-Type: application/x-www-form-urlencoded\r\n";
+            $out .= "Connection: Close\r\n\r\n";
+            fwrite($fp, $out);
+            fclose($fp);
+
+            return self::RESPONSE_SUCCESS;
+        }
     }
 }

@@ -31,6 +31,26 @@ class GoogleSpreadsheets
     /** @var array $contentData */
     protected $contentData;
 
+    /** @var bool $backgroundRequest */
+    protected $backgroundRequest;
+
+    /**
+     * Function setBackgroundRequest - Lựa chọn gọi 1 async GET Request để không delay Main Process
+     *
+     * @param bool $backgroundRequest
+     *
+     * @return $this
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/06/2021 49:14
+     */
+    public function setBackgroundRequest($backgroundRequest = true)
+    {
+        $this->backgroundRequest = $backgroundRequest;
+
+        return $this;
+    }
+
     /**
      * Function setScriptId
      *
@@ -91,9 +111,18 @@ class GoogleSpreadsheets
         if (empty($this->scriptId) || empty($this->contentData)) {
             $this->response = null;
         } else {
-            $scriptUrl      = str_replace(self::ID_PATTERN, $this->scriptId, self::SCRIPT_API);
-            $this->response = Helper::sendToSpreadsheets($scriptUrl, $this->contentData);
+            $scriptUrl = str_replace(self::ID_PATTERN, $this->scriptId, self::SCRIPT_API);
+            if ($this->backgroundRequest === true) {
+                /**
+                 * Async GET Request để không delay Main Process
+                 * Lưu ý: Cách gọi này không chắc chắn được việc request tới Google có thành công thật sự hay không
+                 */
+                $this->response = Helper::backgroundHttpGet($scriptUrl . '?' . http_build_query($this->contentData));
+            } else {
+                $this->response = Helper::sendToSpreadsheets($scriptUrl, $this->contentData);
+            }
         }
+
         return $this;
     }
 }

@@ -7,7 +7,7 @@
         "php"
     ],
     "homepage": "https://github.com/bear8421/spreadsheets-basic",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
         {

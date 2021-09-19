@@ -85,7 +85,7 @@ class Helper
 
         $res = json_decode($request);
 
-        if (isset($res->result) && $res->result == 'success') {
+        if (isset($res->result) && $res->result === 'success') {
             return [
                 'code'    => self::EXIT_SUCCESS,
                 'status'  => 'success',
@@ -115,7 +115,7 @@ class Helper
     public static function backgroundHttpGet($url)
     {
         $parts = parse_url($url);
-        if (strtolower($parts['scheme']) == 'https') {
+        if (strtolower($parts['scheme']) === 'https') {
             $fp = fsockopen('ssl://' . $parts['host'], isset($parts['port']) ? $parts['port'] : self::PORT_SSL, $errno, $errStr, self::REQUEST_TIMEOUT);
         } else {
             $fp = fsockopen($parts['host'], isset($parts['port']) ? $parts['port'] : self::PORT_HTTP, $errno, $errStr, self::REQUEST_TIMEOUT);
@@ -126,15 +126,15 @@ class Helper
             }
 
             return self::RESPONSE_FAILED;
-        } else {
-            $out = "GET " . $parts['path'] . "?" . $parts['query'] . " HTTP/1.1\r\n";
-            $out .= "Host: " . $parts['host'] . "\r\n";
-            $out .= "Content-Type: application/x-www-form-urlencoded\r\n";
-            $out .= "Connection: Close\r\n\r\n";
-            fwrite($fp, $out);
-            fclose($fp);
-
-            return self::RESPONSE_SUCCESS;
         }
+
+        $out = "GET " . $parts['path'] . "?" . $parts['query'] . " HTTP/1.1\r\n";
+        $out .= "Host: " . $parts['host'] . "\r\n";
+        $out .= "Content-Type: application/x-www-form-urlencoded\r\n";
+        $out .= "Connection: Close\r\n\r\n";
+        fwrite($fp, $out);
+        fclose($fp);
+
+        return self::RESPONSE_SUCCESS;
     }
 }

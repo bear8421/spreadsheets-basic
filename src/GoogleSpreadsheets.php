@@ -44,7 +44,7 @@ class GoogleSpreadsheets
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/06/2021 49:14
      */
-    public function setBackgroundRequest($backgroundRequest = true)
+    public function setBackgroundRequest(bool $backgroundRequest = true): GoogleSpreadsheets
     {
         $this->backgroundRequest = $backgroundRequest;
 
@@ -61,7 +61,7 @@ class GoogleSpreadsheets
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/04/2021 25:02
      */
-    public function setScriptId($scriptId = '')
+    public function setScriptId(string $scriptId = ''): GoogleSpreadsheets
     {
         $this->scriptId = $scriptId;
 
@@ -78,7 +78,7 @@ class GoogleSpreadsheets
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/04/2021 32:26
      */
-    public function setContentData($contentData = [])
+    public function setContentData(array $contentData = array()): GoogleSpreadsheets
     {
         $this->contentData = $contentData;
 
@@ -106,7 +106,7 @@ class GoogleSpreadsheets
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/04/2021 38:44
      */
-    public function push()
+    public function push(): GoogleSpreadsheets
     {
         if (empty($this->scriptId) || empty($this->contentData)) {
             $this->response = null;

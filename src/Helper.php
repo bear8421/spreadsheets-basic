@@ -48,7 +48,7 @@ class Helper
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/04/2021 30:36
      */
-    public static function sendToSpreadsheets($url = '', $params = [])
+    public static function sendToSpreadsheets(string $url = '', array $params = array()): array
     {
         if (empty($url)) {
             return [
@@ -90,7 +90,7 @@ class Helper
                 'code'    => self::EXIT_SUCCESS,
                 'status'  => 'success',
                 'message' => 'Success',
-                'rowId'   => isset($res->row) ? $res->row : null
+                'rowId'   => $res->row ?? null
             ];
         }
 
@@ -112,13 +112,13 @@ class Helper
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 10/16/18 17:15
      */
-    public static function backgroundHttpGet($url)
+    public static function backgroundHttpGet(string $url): array
     {
         $parts = parse_url($url);
         if (strtolower($parts['scheme']) === 'https') {
-            $fp = fsockopen('ssl://' . $parts['host'], isset($parts['port']) ? $parts['port'] : self::PORT_SSL, $errno, $errStr, self::REQUEST_TIMEOUT);
+            $fp = fsockopen('ssl://' . $parts['host'], $parts['port'] ?? self::PORT_SSL, $errno, $errStr, self::REQUEST_TIMEOUT);
         } else {
-            $fp = fsockopen($parts['host'], isset($parts['port']) ? $parts['port'] : self::PORT_HTTP, $errno, $errStr, self::REQUEST_TIMEOUT);
+            $fp = fsockopen($parts['host'], $parts['port'] ?? self::PORT_HTTP, $errno, $errStr, self::REQUEST_TIMEOUT);
         }
         if (!$fp) {
             if (function_exists('log_message')) {

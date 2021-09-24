@@ -26,16 +26,16 @@ class Helper
     const PORT_SSL        = 443;
     const PORT_HTTP       = 80;
 
-    const RESPONSE_SUCCESS = [
+    protected static $RESPONSE_SUCCESS = array(
         'code'    => self::EXIT_SUCCESS,
         'status'  => 'success',
-        'message' => 'Success',
-    ];
-    const RESPONSE_FAILED  = [
+        'message' => 'Success'
+    );
+    protected static $RESPONSE_FAILED  = array(
         'code'    => self::EXIT_ERROR,
         'status'  => 'failed',
         'message' => 'Error'
-    ];
+    );
 
     /**
      * Function sendToSpreadsheets
@@ -125,7 +125,7 @@ class Helper
                 log_message('error', "ERROR: " . json_encode($errno) . " - " . json_encode($errStr));
             }
 
-            return self::RESPONSE_FAILED;
+            return self::$RESPONSE_FAILED;
         }
 
         $out = "GET " . $parts['path'] . "?" . $parts['query'] . " HTTP/1.1\r\n";
@@ -135,6 +135,6 @@ class Helper
         fwrite($fp, $out);
         fclose($fp);
 
-        return self::RESPONSE_SUCCESS;
+        return self::$RESPONSE_SUCCESS;
     }
 }

@@ -10,6 +10,13 @@ Thư viện này chỉ nên đáp ứng những project nhỏ, làm việc với
 
 Nếu cần nhiều tính năng hơn, hãy làm việc với Google Sheet API trên Google Cloud Platform - Tham khảo tài liệu tại đây: https://developers.google.com/sheets/api
 
+## Version
+
+Thư viện hỗ trợ 2 phiên bản song song, tùy thuộc vào phiên bản PHP của bạn sử dụng là gì để sử dụng cho thích hợp và tối ưu nhất
+
+- [x] v1.x support all PHP version `>=5.4`
+- [x] v2.x support all PHP version `>=7.0`
+
 ## Cài đặt thư viện
 
 Thư viện này được cài đặt thông qua Composer

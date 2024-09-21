@@ -1,6 +1,11 @@
 # Google Spreadsheets - Basic Level
 
-[![Latest Stable Version](http://poser.pugx.org/bear8421/spreadsheets-basic/v)](https://packagist.org/packages/bear8421/spreadsheets-basic) [![Total Downloads](http://poser.pugx.org/bear8421/spreadsheets-basic/downloads)](https://packagist.org/packages/bear8421/spreadsheets-basic) [![Latest Unstable Version](http://poser.pugx.org/bear8421/spreadsheets-basic/v/unstable)](https://packagist.org/packages/bear8421/spreadsheets-basic) [![License](http://poser.pugx.org/bear8421/spreadsheets-basic/license)](https://packagist.org/packages/bear8421/spreadsheets-basic) [![PHP Version Require](http://poser.pugx.org/bear8421/spreadsheets-basic/require/php)](https://packagist.org/packages/bear8421/spreadsheets-basic)
+[![Latest Stable Version](https://img.shields.io/packagist/v/bear8421/spreadsheets-basic.svg?style=flat-square)](https://packagist.org/packages/bear8421/spreadsheets-basic)
+[![Total Downloads](https://img.shields.io/packagist/dt/bear8421/spreadsheets-basic.svg?style=flat-square)](https://packagist.org/packages/bear8421/spreadsheets-basic)
+[![Daily Downloads](https://img.shields.io/packagist/dd/bear8421/spreadsheets-basic.svg?style=flat-square)](https://packagist.org/packages/bear8421/spreadsheets-basic)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/bear8421/spreadsheets-basic.svg?style=flat-square)](https://packagist.org/packages/bear8421/spreadsheets-basic)
+[![License](https://img.shields.io/packagist/l/bear8421/spreadsheets-basic.svg?style=flat-square)](https://packagist.org/packages/bear8421/spreadsheets-basic)
+[![PHP Version Require](https://img.shields.io/packagist/dependency-v/bear8421/spreadsheets-basic/php)](https://packagist.org/packages/bear8421/spreadsheets-basic)
 
 1 thư viện nhỏ hỗ trợ việc đẩy dữ liệu lên Google Spreadsheets để làm Data thông qua Google Sheet API.
 
